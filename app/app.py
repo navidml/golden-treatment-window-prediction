@@ -1,13 +1,16 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 
 st.set_page_config(
     page_title="Sepsis Prediction System",
     layout="wide"
 )
 
-model = joblib.load(r"C:\Users\navid\OneDrive\دسکتاپ\projects\9)Golden Treatment Window Prediction\models\golden_treatment_model.pkl")
+model_path = Path(__file__).parent.parent / "models" / "golden_treatment_model.pkl"
+
+model = joblib.load(model_path)
 
 if not hasattr(model, "algorithm"):
     model.algorithm = "SAMME.R"
